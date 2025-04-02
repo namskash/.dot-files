@@ -1,0 +1,22 @@
+[user]
+	email = <email>
+	name = Naman Kashyap
+	username = <username>
+[pull]
+	ff = only
+[init]
+	defaultBranch = main
+[alias]
+	ad = add -A
+	br = branch
+	co = checkout
+	cb = checkout -b
+	acm = commit -am
+	cm = commit -m
+	cam = commit --amend
+	recm = commit --amend --no-edit
+	lg = log --oneline --graph --decorate
+	st = status
+	pushup = push -u origin
+[push]
+	default = current
