@@ -1,14 +1,18 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/Applications/android-studio/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+
+# Default EDITOR
+export EDITOR="vim"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# Themes: dogenpunk(om), fino-time, gnzh, 
+# My Shortlisted Themes: dogenpunk(om), fino-time, gnzh 
 ZSH_THEME="fino-time"
 
 # Set list of themes to pick from when loading at random
@@ -42,7 +46,7 @@ ZSH_THEME="fino-time"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
@@ -71,7 +75,7 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git direnv zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -101,24 +105,77 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Homebrew stuff
-eval "$(/opt/homebrew/bin/mise activate zsh)"
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
-export PATH="$HOME/.local/share/mise/shims:$PATH"
-
-# asdf stuff:
-. "$HOME/.asdf/asdf.sh"
-. "$HOME/.asdf/completions/asdf.bash"
-
 # Customizations begins from here:
 
 # zoxide:
 eval "$(zoxide init zsh)"
 
+# mise
+eval "$(mise activate zsh)"
+
 # aliases
 alias cls="clear"
+alias b="cd .."
+alias bb="cd ..."
 
 alias szh="source ~/.zshrc"
 
 alias stmux="tmux source ~/.config/tmux/tmux.conf"
+
+alias n="nvim ."
+
+# Linux custom aliases
+alias nk="cd ~/NK"
+alias ssd="cd ~/ssd"
+alias cdd="cd ~/dev"
+alias zd="cd ~/dev"
+alias cdss="cd ~/dev/spendSense"
+alias zss="cd ~/dev/spendSense"
+
+# 10x-Engineering
+alias ls="eza"
+alias lss="eza -lah --git"
+alias lls="ls"
+alias ldirs="eza -lh --only-dirs --git"
+alias lfiles="eza -lh --only-files --git"
+alias grep="rg"
+alias find="fd"
+
+alias v="vlc > /dev/null 2>&1"
+alias h="haruna > /dev/null 2>&1"
+
+alias sruti="haruna > /dev/null 2&>1  ~/NK/Audio/Tanpura-Sruti-C#.mp3 &"
+
+# Git QUICK aliases
+alias gs="git status"
+alias gss="git status --short"
+alias ga="git add -p ."
+
+# Run shell scripts
+alias cp_config="~/.dotfiles/.scripts/copy_config.sh"
+alias gdrive="~/.dotfiles/.scripts/rclone-sync-job.sh"
+alias sangita="~/.dotfiles/.scripts/sangita-class-setup.sh >/dev/null 2>&1 &"
+
+# System command aliases
+# alias hib="sudo systemctl hibernate"
+
+# AUTOCOMPLETE customizations
+source $ZSH_CUSTOM/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+
+# left and right arrow to move the cursor
+bindkey -M menuselect  '^[[D' .backward-char  '^[OD' .backward-char
+bindkey -M menuselect  '^[[C'  .forward-char  '^[OC'  .forward-char
+
+# Enter always submits
+bindkey -M menuselect '^M' .accept-line
+
+# Custom functions
+vv() {
+  "vlc ./$1 > /dev/null 2>&1 &"
+}
+
+mkcd() {
+  mkdir $1 && cd $1
+}
+
 
