@@ -1,6 +1,9 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/Applications/android-studio/bin:$PATH
+export PATH=/usr/bin/obsidian:$PATH
+export PATH=/usr/bin/npm:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -75,7 +78,7 @@ ZSH_THEME="fino-time"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete)
+plugins=(vi-mode git direnv zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete colored-man-pages)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -133,13 +136,16 @@ alias cdss="cd ~/dev/spendSense"
 alias zss="cd ~/dev/spendSense"
 
 # 10x-Engineering
-alias ls="eza"
-alias lss="eza -lah --git"
+alias ls="eza --icons"
+alias lss="eza -lah --git --icons"
 alias lls="ls"
-alias ldirs="eza -lh --only-dirs --git"
-alias lfiles="eza -lh --only-files --git"
+alias ldirs="eza -lh --only-dirs --git --icons"
+alias lfiles="eza -lh --only-files --git --icons"
 alias grep="rg"
 alias find="fd"
+alias clip="xclip -selection clipboard"
+alias -g -- --help='--help 2>&1 | bat --language=help --style=plain --color always'
+alias recents='history | grep "^\s?[0-9]+\s*(z\s|cd\s)" | sed "s/^\s*[0-9]*\s\+//" | tail'
 
 alias v="vlc > /dev/null 2>&1"
 alias h="haruna > /dev/null 2>&1"
@@ -157,7 +163,7 @@ alias gdrive="~/.dotfiles/.scripts/rclone-sync-job.sh"
 alias sangita="~/.dotfiles/.scripts/sangita-class-setup.sh >/dev/null 2>&1 &"
 
 # System command aliases
-# alias hib="sudo systemctl hibernate"
+alias hib="systemctl hibernate"
 
 # AUTOCOMPLETE customizations
 source $ZSH_CUSTOM/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
@@ -168,6 +174,9 @@ bindkey -M menuselect  '^[[C'  .forward-char  '^[OC'  .forward-char
 
 # Enter always submits
 bindkey -M menuselect '^M' .accept-line
+
+# Set default browser
+export BROWSER=google-chrome
 
 # Custom functions
 vv() {
